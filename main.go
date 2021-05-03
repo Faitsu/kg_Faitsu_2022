@@ -1,24 +1,36 @@
 /*Erica Chou
 Kargo Internship Question:
-Turn an array of Integers into an array of Strings */
+Turn an array of Integers into an array of Strings
+Input: String Array, Print results into stdout*/
 package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
 	//logic for pulling input from the terminal
 
-	//argsWithoutProg := os.Args[1:]
+	termArr := os.Args[1:]
+	numarray := numToString(termArr)
 
-	//fmt.Println(argsWithoutProg)
+	/* Debugging Code
+	fmt.Printf("Number Array: len=%d %v\n", len(termArr), termArr)
 
-	//print out original array
-	myarr := []string{"1", "2", "4", "10", "1238"}
-	fmt.Printf("Number Array: len=%d %v\n", len(myarr), myarr)
-	numarray := numToString(myarr)
 	fmt.Printf("String Number Array: len=%d cap=%d %v\n", len(numarray), cap(numarray), numarray)
+	*/
+
+	//print out the results in stdout
+	var ind int
+
+	for ind = 0; ind < len(numarray); ind++ {
+		fmt.Print(numarray[ind])
+		//Print out the comma
+		if ind != len(numarray)-1 { //if not the last number, print a comma
+			fmt.Print(",")
+		}
+	}
 
 }
 
