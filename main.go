@@ -8,37 +8,37 @@ import (
 )
 
 func main() {
-	//Figuring out if code will work with my own array
-	//logic might be slightly different when we pass args into it from the terminal
+	//logic for pulling input from the terminal
 
-	//assuming the terminal input will give me an array of INtegers in the form of a string
-	myarr := "1 2 10 12 129"
+	//argsWithoutProg := os.Args[1:]
+
+	//fmt.Println(argsWithoutProg)
+
 	//print out original array
+	myarr := []string{"1", "2", "4", "10", "1238"}
 	fmt.Printf("Number Array: len=%d %v\n", len(myarr), myarr)
 	numarray := numToString(myarr)
 	fmt.Printf("String Number Array: len=%d cap=%d %v\n", len(numarray), cap(numarray), numarray)
 
 }
 
-func numToString(array string) []string {
-	var i, sizearr int
+func numToString(array []string) []string {
+	var i, j, sizearr int
 	sizearr = len(array)
 	var numString []string
 	var temp string
 	for i = 0; i < sizearr; i++ {
-		if array[i] == ' ' {
-			numString = append(numString, temp)
-			temp = ""
-		} else {
-			temp += numConversion(array[i])
-		}
+		var toAdd string
+		//seperate a single term
+		temp = array[i]
 
-		//for the last case, we have to also append the num string
-		if i == sizearr-1 {
-			numString = append(numString, temp)
+		//loop through each part of this term and get the phonetic version of each term
+		for j = 0; j < len(temp); j++ {
+			toAdd += numConversion(temp[j])
 		}
 
 		//after we piece together our number we append it to the final array
+		numString = append(numString, toAdd)
 
 	}
 	return numString
